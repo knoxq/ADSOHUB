@@ -17,3 +17,4 @@ $mensaje = 'Auto-commit (' + $usuario + ') - ' + $fecha
 
 git add .
 git commit -m $mensaje
+git push
