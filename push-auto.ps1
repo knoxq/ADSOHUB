@@ -1,21 +1,19 @@
-# Ir a la carpeta donde está el script
 Set-Location $PSScriptRoot
 
-# Verificar que sea un repositorio Git
 if (-not (Test-Path ".git")) {
-    Write-Output "No es un repositorio Git"
+    Write-Output 'No es un repositorio Git'
     exit
 }
+
+$changes = git status --porcelain
+if ($changes.Length -eq 0) {
+    Write-Output 'Sin cambios - no se crea commit'
+    exit
+}
+
+$fecha = Get-Date -Format 'yyyy-MM-dd HH:mm'
+$usuario = git config user.name
+$mensaje = 'Auto-commit (' + $usuario + ') - ' + $fecha
 
 git add .
-
-# Verificar si hay cambios reales
-$status = git status --porcelain
-if ($status.Length -eq 0) {
-    Write-Output "No hay cambios para commitear"
-    exit
-}
-
-$fecha = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-git commit -m "Auto update: $fecha"
-git push origin main
+git commit -m $mensaje
