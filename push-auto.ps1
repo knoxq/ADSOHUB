@@ -1,7 +1,7 @@
-# Moverse a la carpeta del proyecto (CRÍTICO)
-Set-Location "C:\ruta\a\tu\proyecto"
+# Ir a la carpeta donde está el script
+Set-Location $PSScriptRoot
 
-# Verificar que sea un repositorio git
+# Verificar que sea un repositorio Git
 if (-not (Test-Path ".git")) {
     Write-Output "No es un repositorio Git"
     exit
@@ -9,7 +9,7 @@ if (-not (Test-Path ".git")) {
 
 git add .
 
-# Verificar si hay cambios
+# Verificar si hay cambios reales
 $status = git status --porcelain
 if ($status.Length -eq 0) {
     Write-Output "No hay cambios para commitear"
