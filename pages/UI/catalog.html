@@ -1,15 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>stif es gay Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut exercitationem tempora beatae magni maiores. Commodi obcaecati quas reiciendis, laborum fugiat in saepe at nam, dolorum distinctio ducimus, quia eaque repudiandae?
+<!doctype html>
+<html>
 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam voluptates molestiae libero expedita adipisci ipsum accusantium nesciunt natus qui eum illo omnis vel, perspiciatis, eos laudantium neque, impedit a cum?
-        
-    </h1>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>ADSO HUB</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <section class="p-5 bg-black font-sans">
+            <div class="flex flex-row justify-between text-white items-center">
+                <!-- TITLE HEAD -->
+                <div class="text-red-600 flex flex-row">
+                    <!-- LOGO --> 
+                    <button>
+                        <a href="index.html"></a>
+                        <img class="size-16 hover:size-20 transition-all duration-300 ease-in-out hover:cursor-pointer"
+                            src="/assets/icons/favicon.ico" alt="">
+                    </button>
+                    <!-- TITLE -->
+                    <h1
+                        class="transition-all duration-300 ease-in-out text-lg flex flex-row items-center text-shadow-lg text-shadow-red-950 font-bold hover:text-shadow-red-600">
+                        ADSO<span class="italic">HUB</span></h1>
+                </div>
+
+                <!-- NAVIGATION -->
+                <nav>
+                    <!-- INICIO -->
+                    <label class="mx-5 cursor-pointer">
+                        <input type="radio" name="nav-item" class="peer hidden" />
+                        <span
+                            class="transition-colors duration-300 ease-in-out border-b-3 border-transparent peer-checked:border-red-600 hover:border-red-400 pb-1">
+                            Inicio
+                        </span>
+                    </label>
+
+                    <!-- SERIES --> 
+                    <label class="mx-5 cursor-pointer">
+                        <input type="radio" name="nav-item" class="peer hidden" />
+                        <span
+                            class="transition-colors duration-300 ease-in-out border-b-3 border-transparent peer-checked:border-red-600 hover:border-red-400 pb-1">
+                            Series
+                        </span>
+                    </label>
+
+                    <!-- MOVIES -->
+                    <label class="mx-5 cursor-pointer">
+                        <input type="radio" name="nav-item" class="peer hidden" />
+                        <span
+                            class="transition-colors duration-300 ease-in-out border-b-3 border-transparent peer-checked:border-red-600 hover:border-red-400 pb-1">
+                            Peliculas
+                        </span>
+                    </label>
+
+                    <!-- MY LIST -->
+                    <label class="mx-5 cursor-pointer">
+                        <input type="radio" name="nav-item" class="peer hidden" />
+                        <span
+                            class="transition-colors duration-300 ease-in-out border-b-3 border-transparent peer-checked:border-red-600 hover:border-red-400 pb-1">
+                            Mi lista
+                        </span>
+                    </label>
+                </nav>
+
+                <!-- SEARCH -->
+                <div>
+                    <input
+                        class="py-2 px-3 bg-gray-900 rounded-full border-2 border-red-950 focus:border-red-600 focus:outline-none transition-colors duration-300 ease-in-out caret-red-900"
+                        placeholder="🔍 Buscar" type="text">
+                    <button class="mx-5 hover:text-red-600 transition-colors duration-300 ease-in-out"><i
+                            class="fa-solid fa-magnifying-glass mx-2"></i> Buscar</button>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 </body>
+
 </html>
