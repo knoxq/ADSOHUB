@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <title>ADSO HUB</title>
+</head>
+
+<body class="bg-black text-white">
+
+    <!-- ================= HEADER ================= -->
+    <header class="p-5 bg-black">
+        <div class="flex justify-between items-center">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-3 text-red-600">
+                <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
+                <h1 class="text-xl font-bold">
+                    ADSO<span class="italic">HUB</span>
+                </h1>
+            </div>
+
+            <!-- NAV -->
+            <nav class="hidden md:flex gap-6">
+                <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600 cursor-pointer">Inicio</a>
+                <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600 cursor-pointer">Series</a>
+                <a href="/pages/UI/catalog/secciones/Peliculas.html" class="hover:text-red-600 cursor-pointer">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Mi-lista.html" class="hover:text-red-600 cursor-pointer">Mi lista</a>
+            </nav>
+
+            <!-- SEARCH -->
+            <div class="flex items-center gap-3">
+                <input type="text"
+                    class="bg-zinc-900 px-4 py-2 rounded-full outline-none border border-zinc-700 focus:border-red-600"
+                    placeholder="🔍 Buscar">
+            </div>
+
+        </div>
+    </header>
+
+
+
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script type="module" src="/js/catalog/main.js"></script>
+</body>
+</html>

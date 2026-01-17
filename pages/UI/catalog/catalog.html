@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <title>ADSO HUB</title>
+</head>
+
+<body class="bg-black text-white">
+
+    <!-- ================= HEADER ================= -->
+    <header class="p-5 bg-black">
+        <div class="flex justify-between items-center">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-3 text-red-600">
+                <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
+                <h1 class="text-xl font-bold">
+                    ADSO<span class="italic">HUB</span>
+                </h1>
+            </div>
+
+            <!-- NAV -->
+            <nav class="hidden md:flex gap-6">
+                <a href="#catalogo" class="hover:text-red-600 cursor-pointer">Inicio</a>
+                <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600 cursor-pointer">Series</a>
+                <a href="/pages/UI/catalog/secciones/Peliculas.html" class="hover:text-red-600 cursor-pointer">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Mi-lista.html" class="hover:text-red-600 cursor-pointer">Mi lista</a>
+            </nav>
+
+            <!-- SEARCH -->
+            <div class="flex items-center gap-3">
+                <input type="text"
+                    class="bg-zinc-900 px-4 py-2 rounded-full outline-none border border-zinc-700 focus:border-red-600"
+                    placeholder="🔍 Buscar">
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+        <!-- ================= HERO SLIDER ================= -->
+        <section class="mx-10 mt-6">
+
+            <div class="swiper mySwiper h-[420px] rounded-xl overflow-hidden">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <section
+                            class="relative h-full flex items-center justify-between p-10 border-l-4 border-red-700">
+
+                            <div class="absolute inset-0 bg-[url('/assets/img/BG-Catalog-1.jpg')]
+                                bg-cover bg-center blur-md scale-110"></div>
+
+                            <div class="absolute inset-0 bg-black/60"></div>
+
+                            <div class="relative z-10 max-w-xl space-y-4">
+                                <h2 class="text-4xl font-bold">Bienvenido a ADSOHUB</h2>
+                                <p class="text-zinc-300">
+                                    Disfruta películas y series populares, actualizadas y organizadas.
+                                </p>
+                                <div class="flex gap-4">
+                                    <button class="bg-red-600 px-6 py-2 rounded hover:bg-red-500">
+                                        <a href="#catalogo">Ver Ahora</a>
+                                    </button>
+                                    <button class="bg-zinc-800 px-6 py-2 rounded hover:bg-zinc-700">
+                                        Más info
+                                    </button>
+                                </div>
+                            </div>
+
+                            <img src="/assets/img/BG-Catalog-1.jpg"
+                                class="relative z-10 max-w-sm rounded-lg shadow-lg hidden md:block">
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= CATALOG ================= -->
+        <section id="catalogo" class="mx-10 mt-16 space-y-16">
+
+            <!-- ===== MOVIES ===== -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6"> Películas populares</h2>
+
+                <div class="swiper moviesSwiper">
+                    <div id="movies-wrapper" class="swiper-wrapper">
+                        <!-- Slides dinámicos -->
+                    </div>
+
+                    <div class="swiper-button-next text-red-600"></div>
+                    <div class="swiper-button-prev text-red-600"></div>
+                </div>
+            </section>
+
+            <!-- ===== SERIES ===== -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6"> Series populares</h2>
+
+                <div class="swiper seriesSwiper">
+                    <div id="series-wrapper" class="swiper-wrapper">
+                        <!-- Slides dinámicos -->
+                    </div>
+
+                    <div class="swiper-button-next text-red-600"></div>
+                    <div class="swiper-button-prev text-red-600"></div>
+                </div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script type="module" src="/js/catalog/main.js"></script>
+
+
+    <!-- MODAL -->
+    <div id="movie-modal"
+        class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center">
+        <div class="relative max-w-5xl w-full mx-4 bg-zinc-900 rounded-lg overflow-hidden">
+
+            <!-- BOTÓN CERRAR -->
+            <button id="close-modal" class="absolute top-4 right-4 z-50
+         bg-black/70 hover:bg-black
+         text-white text-2xl
+         w-10 h-10 rounded-full
+         flex items-center justify-center">
+                ✕
+            </button>
+
+
+            <!-- MEDIA -->
+            <div class="relative h-[60vh] bg-black flex items-center justify-center">
+                <iframe id="modal-trailer" class="w-full h-full hidden" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                <div id="modal-backdrop" class="absolute inset-0 bg-cover bg-center"></div>
+            </div>
+
+
+            <!-- CONTENT -->
+            <div class="p-6 space-y-4">
+                <h2 id="modal-title" class="text-3xl font-bold text-white"></h2>
+                <p id="modal-description" class="text-zinc-300"></p>
+
+                <button class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded text-white font-semibold">
+                    ▶ Ver
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
