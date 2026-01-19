@@ -20,7 +20,6 @@ async function fetchTrailer(id, type) {
 }
 
 
-// js/catalog/catalog.js
 const IMG = "https://image.tmdb.org/t/p/w500";
 
 // ================= MOVIES =================

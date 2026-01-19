@@ -1,4 +1,3 @@
-// js/catalog/main.js
 import { renderMovies, renderSeries } from "./catalog.js";
 import {
   initHeroSwiper,
