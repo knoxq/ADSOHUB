@@ -78,8 +78,6 @@ const modalDesc = document.getElementById("modal-description");
 const modalBackdrop = document.getElementById("modal-backdrop");
 const closeModal = document.getElementById("close-modal");
 
-const BACKDROP = "https://image.tmdb.org/t/p/original";
-
 async function openModal(item, isMovie) {
     modalTitle.textContent = isMovie ? item.title : item.name;
     modalDesc.textContent = item.overview || "Sin descripción disponible";
@@ -113,7 +111,7 @@ closeModal.addEventListener("click", () => {
     modal.classList.add("hidden");
 
     const iframe = document.getElementById("modal-trailer");
-    iframe.src = ""; // 🔥 corta el video
+    iframe.src = "";
 });
 
 

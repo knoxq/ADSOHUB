@@ -35,25 +35,44 @@
             <nav class="hidden md:flex gap-6">
                 <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600 cursor-pointer">Inicio</a>
                 <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600 cursor-pointer">Series</a>
-                <a href="/pages/UI/catalog/secciones/Peliculas.html" class="hover:text-red-600 cursor-pointer">Películas</a>
-                <a href="/pages/UI/catalog/secciones/Mi-lista.html" class="hover:text-red-600 cursor-pointer">Mi lista</a>
+                <a href="/pages/UI/catalog/secciones/Movies.html"
+                    class="hover:text-red-600 cursor-pointer">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Mi-lista.html" class="hover:text-red-600 cursor-pointer">Mi
+                    lista</a>
             </nav>
 
             <!-- SEARCH -->
             <div class="flex items-center gap-3">
                 <input type="text"
                     class="bg-zinc-900 px-4 py-2 rounded-full outline-none border border-zinc-700 focus:border-red-600"
-                    placeholder="🔍 Buscar">
+                    placeholder="🔍 Buscar"
+                    id="searchMovies">
             </div>
 
         </div>
     </header>
 
 
+    <!-- GRID CON SWIPER -->
+    <main class="p-6">
+
+        <div class="swiper moviesSwiper">
+            <div id="movies-wrapper" class="swiper-wrapper"></div>
+
+            <!-- PAGINACIÓN -->
+            <div class="swiper-pagination !bottom-0 mt-8"></div>
+
+            <!-- NAVEGACIÓN -->
+            <div class="swiper-button-prev text-red-600"></div>
+            <div class="swiper-button-next text-red-600"></div>
+        </div>
+
+    </main>
 
 
     <!-- ================= SCRIPTS ================= -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script type="module" src="/js/catalog/main.js"></script>
+    <script type="module" src="/js/catalog/secciones/Movies/main.js"></script>
 </body>
+
 </html>
