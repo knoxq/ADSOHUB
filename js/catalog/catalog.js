@@ -72,6 +72,83 @@ export function renderSeries(seriesList) {
     });
 }
 
+
+// ================= SEARCH MULTIMEDIA =================
+export function renderSearchMovies(items) {
+    const wrapper = document.getElementById("movies-wrapper");
+    if (!wrapper) return;
+
+    wrapper.innerHTML = "";
+
+    items.forEach(item => {
+        if (
+            item.media_type === "person" ||
+            (!item.poster_path && !item.backdrop_path)
+        ) return;
+
+        wrapper.insertAdjacentHTML("beforeend", `
+            <div class="swiper-slide !w-[160px]">
+                <div
+                    class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
+                    data-id="${item.id}"
+                    data-type="${item.media_type}">
+                    <img
+                        src="${IMG}${item.poster_path || item.backdrop_path}"
+                        class="w-full aspect-[2/3] object-cover"
+                        alt="${item.title || item.name}"
+                    />
+                </div>
+            </div>
+        `);
+    });
+}
+
+export function renderSearchSeries(items) {
+    const wrapper = document.getElementById("series-wrapper");
+    if (!wrapper) return;
+
+    wrapper.innerHTML = "";
+
+    items.forEach(item => {
+        if (
+            item.media_type === "person" ||
+            (!item.poster_path && !item.backdrop_path)
+        ) return;
+
+        wrapper.insertAdjacentHTML("beforeend", `
+            <div class="swiper-slide !w-[160px]">
+                <div
+                    class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
+                    data-id="${item.id}"
+                    data-type="${item.media_type}">
+                    <img
+                        src="${IMG}${item.poster_path || item.backdrop_path}"
+                        class="w-full aspect-[2/3] object-cover"
+                        alt="${item.title || item.name}"
+                    />
+                </div>
+            </div>
+        `);
+    });
+}
+
+// ================= CLEAR CATALOG =================
+
+export function clearCatalog() {
+    const moviesWrapper = document.getElementById("movies-wrapper");
+    const seriesWrapper = document.getElementById("series-wrapper");
+    const searchWrapper = document.getElementById("search-multimedia-wrapper");
+
+    if (moviesWrapper) moviesWrapper.innerHTML = "";
+    if (seriesWrapper) seriesWrapper.innerHTML = "";
+    if (searchWrapper) searchWrapper.innerHTML = "";
+}
+
+
+
+
+// ================ MODAL =================
+
 const modal = document.getElementById("movie-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalDesc = document.getElementById("modal-description");
@@ -125,5 +202,9 @@ document.addEventListener("click", (e) => {
     const item =
         type === "movie" ? MOVIES_CACHE[id] : SERIES_CACHE[id];
 
+    if (!item) return;
+
     openModal(item, type === "movie");
 });
+
+

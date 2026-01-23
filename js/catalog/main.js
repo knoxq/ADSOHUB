@@ -1,36 +1,88 @@
-import { renderMovies, renderSeries } from "./catalog.js";
+import {
+  renderMovies,
+  renderSeries,
+  renderSearchMovies,
+  renderSearchSeries,
+  clearCatalog
+} from "./catalog.js";
+
 import {
   initHeroSwiper,
   initMoviesSwiper,
-  initSeriesSwiper
+  initSeriesSwiper,
+  initSearchMultimediaSwiper,
+  destroySearchSwiper,
+  destroyAllSwipers
 } from "./swiper.js";
+
 
 const API_KEY = "12d276e3703dbfd31547bc6f0021075a";
 
-// ================= FETCH MOVIES =================
-async function loadMovies() {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=es-ES`
-  );
-  const data = await res.json();
-  renderMovies(data.results);
-}
+let isSearching = false;
 
-// ================= FETCH SERIES =================
-async function loadSeries() {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=es-ES`
-  );
-  const data = await res.json();
-  renderSeries(data.results);
-}
+// ================= FETCH POPULARES =================
+async function loadHome() {
+  const [moviesRes, seriesRes] = await Promise.all([
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=es-ES`),
+    fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=es-ES`)
+  ]);
 
-// ================= INIT =================
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadMovies();
-  await loadSeries();
+  const moviesData = await moviesRes.json();
+  const seriesData = await seriesRes.json();
+
+  renderMovies(moviesData.results);
+  renderSeries(seriesData.results);
 
   initHeroSwiper();
   initMoviesSwiper();
   initSeriesSwiper();
+}
+
+// ================= FETCH SEARCH =================
+async function searchMovies(query) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=es-ES&query=${query}`
+  );
+  return (await res.json()).results;
+}
+
+async function searchSeries(query) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=es-ES&query=${query}`
+  );
+  return (await res.json()).results;
+}
+
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadHome();
+
+  const inputSearch = document.getElementById("searchMultimedia");
+  if (!inputSearch) return;
+
+  inputSearch.addEventListener("input", async () => {
+    const query = inputSearch.value.trim();
+
+    // 🔁 VOLVER A INICIO
+    if (query.length < 2) {
+      if (isSearching) {
+        isSearching = false;
+        destroySearchSwiper();
+        clearCatalog();
+        await loadHome();
+      }
+      return;
+    }
+
+    // 🔍 MODO BÚSQUEDA
+    isSearching = true;
+    destroyAllSwipers();
+    clearCatalog();
+
+    const moviesResults = await searchMovies(query);
+    const seriesResults = await searchSeries(query);
+    renderSearchMovies(moviesResults);
+    renderSearchSeries(seriesResults);
+    initSearchMultimediaSwiper();
+  });
 });
