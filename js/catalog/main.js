@@ -10,9 +10,6 @@ import {
   initHeroSwiper,
   initMoviesSwiper,
   initSeriesSwiper,
-  initSearchMultimediaSwiper,
-  destroySearchSwiper,
-  destroyAllSwipers
 } from "./swiper.js";
 
 
@@ -67,7 +64,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (query.length < 2) {
       if (isSearching) {
         isSearching = false;
-        destroySearchSwiper();
         clearCatalog();
         await loadHome();
       }
@@ -76,13 +72,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 🔍 MODO BÚSQUEDA
     isSearching = true;
-    destroyAllSwipers();
     clearCatalog();
 
     const moviesResults = await searchMovies(query);
     const seriesResults = await searchSeries(query);
     renderSearchMovies(moviesResults);
     renderSearchSeries(seriesResults);
-    initSearchMultimediaSwiper();
   });
 });

@@ -1,13 +1,9 @@
 // JS main para la sección de Series
 
 import { initSeriesSwiper } from "./swiper.js";
-import { renderSeries } from "./render.js";
-import { renderSearchSeries } from "./render.js";
+import { renderSeries } from "./Render.js";
+import { renderSearchSeries } from "./Render.js";
 import { initSearchSeriesSwiper } from "./swiper.js";
-
-// URL base para las imágenes de TMDB
-
-const IMG = "https://image.tmdb.org/t/p/w500";  
 
 // Clave de API de TMDB
 

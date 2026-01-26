@@ -5,8 +5,11 @@ const YT = "https://www.youtube.com/embed/";
 window.openMovie = (movie) => openModal(movie, true);
 window.openSeries = (series) => openModal(series, false);
 
+
 let MOVIES_CACHE = {};
 let SERIES_CACHE = {};
+let MULTIMEDIA_MOVIES_CACHE = {};
+let MULTIMEDIA_SERIES_CACHE = {};
 
 async function fetchTrailer(id, type) {
     const res = await fetch(
@@ -86,12 +89,14 @@ export function renderSearchMovies(items) {
             (!item.poster_path && !item.backdrop_path)
         ) return;
 
+        MULTIMEDIA_MOVIES_CACHE[item.id] = item;
+
         wrapper.insertAdjacentHTML("beforeend", `
             <div class="swiper-slide !w-[160px]">
                 <div
                     class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
                     data-id="${item.id}"
-                    data-type="${item.media_type}">
+                    data-type="movie">
                     <img
                         src="${IMG}${item.poster_path || item.backdrop_path}"
                         class="w-full aspect-[2/3] object-cover"
@@ -115,12 +120,14 @@ export function renderSearchSeries(items) {
             (!item.poster_path && !item.backdrop_path)
         ) return;
 
+        MULTIMEDIA_SERIES_CACHE[item.id] = item;
+
         wrapper.insertAdjacentHTML("beforeend", `
             <div class="swiper-slide !w-[160px]">
                 <div
                     class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
                     data-id="${item.id}"
-                    data-type="${item.media_type}">
+                    data-type="tv">
                     <img
                         src="${IMG}${item.poster_path || item.backdrop_path}"
                         class="w-full aspect-[2/3] object-cover"
@@ -199,9 +206,12 @@ document.addEventListener("click", (e) => {
     const id = card.dataset.id;
     const type = card.dataset.type;
 
-    const item =
-        type === "movie" ? MOVIES_CACHE[id] : SERIES_CACHE[id];
-
+    let item = null
+        if (type === "movie"){
+            item = MOVIES_CACHE[id] || MULTIMEDIA_MOVIES_CACHE[id];
+        } else if (type === "tv"){
+            item = SERIES_CACHE[id] || MULTIMEDIA_SERIES_CACHE[id];
+        }
     if (!item) return;
 
     openModal(item, type === "movie");

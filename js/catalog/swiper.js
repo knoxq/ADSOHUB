@@ -56,7 +56,7 @@ export function initSearchMultimediaSwiper() {
     searchSwiper = new Swiper(".searchSwiper", {
         slidesPerView: "auto",
         spaceBetween: 12,
-        loop: false, // 🚫 nunca loop en búsqueda
+        loop: true,
     });
 }
 
@@ -71,5 +71,4 @@ export function destroySearchSwiper() {
 export function destroyAllSwipers() {
     destroyMoviesSwiper();
     destroySeriesSwiper();
-    destroySearchSwiper();
 }

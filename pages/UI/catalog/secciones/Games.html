@@ -24,19 +24,19 @@
         <div class="flex justify-between items-center">
 
             <!-- LOGO -->
-            <div class="flex items-center gap-3 text-red-600">
+            <button id="menu-toggle" class="flex items-center gap-3 text-red-600 focus:outline-none">
                 <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
-                <h1 class="text-xl font-bold">
+                <h1 class="text-xl font-bold sm:flex hidden">
                     ADSO<span class="italic">HUB</span>
                 </h1>
-            </div>
+            </button>
 
             <!-- NAV -->
             <nav class="hidden md:flex gap-6">
                 <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600 cursor-pointer">Inicio</a>
                 <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600 cursor-pointer">Series</a>
                 <a href="/pages/UI/catalog/secciones/Movies.html" class="hover:text-red-600 cursor-pointer">Películas</a>
-                <a href="/pages/UI/catalog/secciones/Mi-lista.html" class="hover:text-red-600 cursor-pointer">Mi lista</a>
+                <a href="/pages/UI/catalog/secciones/Games.html" class="hover:text-red-600 cursor-pointer">Juegos</a>
             </nav>
 
             <!-- SEARCH -->
@@ -48,6 +48,43 @@
 
         </div>
     </header>
+
+        <!-- ================= MOBILE MENU ================= -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-sm
+        md:hidden
+            opacity-0 pointer-events-none
+            transition-all duration-300 ease-out">
+
+        <div id="mobile-menu-panel" class="p-6 space-y-6
+                transform -translate-y-10
+                transition-transform duration-300 ease-out">
+
+            <!-- APP NAME -->
+            <div class="flex items-center gap-3 text-red-600">
+                <img src="/assets/icons/favicon.ico" class="size-12">
+                <h2 class="text-2xl font-bold">
+                    ADSO<span class="italic">HUB</span>
+                </h2>
+            </div>
+
+            <!-- NAV LINKS -->
+            <nav class="flex flex-col gap-4 text-lg">
+                <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600">Inicio</a>
+                <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600">Series</a>
+                <a href="/pages/UI/catalog/secciones/Movies.html" class="hover:text-red-600">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Games.html" class="hover:text-red-600">Juegos</a>
+            </nav>
+
+            <!-- CLOSE -->
+            <button id="close-menu" class="mt-10 text-zinc-400 hover:text-white">
+                Cerrar
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
 
 
 
