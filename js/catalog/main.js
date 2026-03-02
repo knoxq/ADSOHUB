@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   inputSearch.addEventListener("input", async () => {
     const query = inputSearch.value.trim();
 
-    // 🔁 VOLVER A INICIO
+  
     if (query.length < 2) {
       if (isSearching) {
         isSearching = false;
@@ -69,8 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       return;
     }
-
-    // 🔍 MODO BÚSQUEDA
+    
     isSearching = true;
     clearCatalog();
 
