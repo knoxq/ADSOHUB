@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADSOHUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+</head>
+
+<body class="bg-black">
+    <header class="fixed w-full z-50 bg-black/80 backdrop-blur-md">
+        <div class="flex items-center gap-2">
+            <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
+            <h1 class="text-xl font-bold sm:flex hidden text-[#E50914]">ADSO<span class="italic text-white">HUB</span>
+            </h1>
+        </div>
+    </header>
+
+    <section class="bg-black px-8 md:px-20 py-20 text-white text-center">
+        <h2 class="text-3xl font-bold mb-12">Planes y <span class="text-[#E50914]">precios</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- BÁSICO -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Básico</h3>
+                <p class="text-4xl font-bold mb-6">$15.000<span class="text-gray-500 text-xl">/mes</span></p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> HD streaming</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 2 pantallas</li>
+                    <li class="flex gap-3"><span class="text-gray-600">✗</span> Sin descargas</li>
+                </ul>
+                <button onclick="abrirFormulario('Básico',15000)"
+                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
+                    Elegir plan
+                </button>
+            </div>
+
+            <!-- ESTÁNDAR -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Estándar</h3>
+                <p class="text-4xl font-bold mb-6">$25.000<span class="text-gray-500 text-xl">/mes</span></p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Full HD</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4 pantallas</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
+                </ul>
+                <button onclick="abrirFormulario('Estándar',25000)"
+                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
+                    Elegir plan
+                </button>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Premium</h3>
+                <p class="text-4xl font-bold mb-6">$35.000<span class="text-gray-500 text-xl">/mes</span></p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4K</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 6 pantallas</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
+                </ul>
+                <button onclick="abrirFormulario('Premium',35000)"
+                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
+                    Elegir plan
+                </button>
+            </div>
+        </div>
+
+        <div id="formularioPago" class="hidden mt-16 max-w-md mx-auto bg-black p-8 rounded-xl border border-red-700">
+            <h3 class="text-2xl font-bold mb-4 text-center">Finalizar compra</h3>
+            <p id="planSeleccionado" class="text-center text-red-500 mb-6"></p>
+            <form id="formPago" class="space-y-4">
+                <input type="text" placeholder="Nombre en la tarjeta" required
+                    class="w-full p-3 bg-black border border-gray-700 rounded outline-none focus:border-red-600">
+                <input type="text" id="tarjeta" maxlength="16" placeholder="Número de tarjeta"
+                    class="w-full p-3 bg-black border border-gray-700 rounded outline-none focus:border-red-600"
+                    required>
+                <div class="flex gap-4">
+                    <input type="text" id="fecha" maxlength="5" placeholder="MM/AA"
+                        class="w-1/2 p-3 bg-black border border-gray-700 rounded outline-none focus:border-red-600"
+                        required>
+                    <input type="text" id="cvv" maxlength="3" placeholder="CVV"
+                        class="w-1/2 p-3 bg-black border border-gray-700 rounded outline-none focus:border-red-600"
+                        required>
+                </div>
+                <button type="submit" class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
+                    Pagar ahora
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div id="modalExito"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50">
+        <div class="bg-zinc-900 border border-red-700 rounded-xl p-10 text-center max-w-sm w-full">
+            <h2 class="text-2xl font-bold mb-4 text-red-600">
+                ¡Compra exitosa!
+            </h2>
+            <p class="text-gray-400 mb-8">
+                Tu suscripción ha sido activada correctamente.
+            </p>
+            <a href="../UI/catalog/catalog.html" class="bg-[#E50914] px-6 py-3 rounded font-bold hover:opacity-90 transition">
+                Cerrar
+            </a>
+        </div>
+    </div>
+
+    <script src="../../js/pagos.js"></script>
+</body>
+
+</html>

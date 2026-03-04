@@ -1,40 +1,39 @@
-let selectedPlan = '';
+function abrirFormulario(plan, precio) {
+  document.getElementById("formularioPago").classList.remove("hidden");
+  document.getElementById("planSeleccionado").innerText =
+    "Plan " + plan + " - $" + precio.toLocaleString();
+}
 
-  function selectPlan(plan, price) {
-    selectedPlan = `${plan} - $${price.toLocaleString()}`;
-    document.getElementById('planText').textContent = selectedPlan;
+const tarjeta = document.getElementById("tarjeta");
+tarjeta.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").slice(0, 16);
+});
 
-    document.querySelectorAll('.plan').forEach(p => {
-      p.classList.remove('border-red-600');
-      p.classList.add('border-gray-700');
-    });
+const cvv = document.getElementById("cvv");
+cvv.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").slice(0, 3);
+});
 
-    event.currentTarget.classList.add('border-red-600');
+const fecha = document.getElementById("fecha");
+fecha.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "");
+  if (this.value.length >= 3) {
+    this.value = this.value.slice(0, 2) + "/" + this.value.slice(2, 4);
+  }
+});
+
+document.getElementById("formPago").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (tarjeta.value.length !== 16) {
+    alert("La tarjeta debe tener 16 números");
+    return;
   }
 
-  document.getElementById('paymentForm').addEventListener('submit', e => {
-    e.preventDefault();
-
-    const name = nameInput();
-    const card = cardInput();
-    const date = dateInput();
-    const cvv = cvvInput();
-
-    if (!name || !card || !date || !cvv || !selectedPlan) {
-      document.getElementById('error').classList.remove('hidden');
-      return;
-    }
-
-    document.getElementById('error').classList.add('hidden');
-    document.getElementById('modal').classList.remove('hidden');
-    document.getElementById('modal').classList.add('flex');
-  });
-
-  function closeModal() {
-    document.getElementById('modal').classList.add('hidden');
+  if (cvv.value.length !== 3) {
+    alert("El CVV debe tener 3 números");
+    return;
   }
 
-  const nameInput = () => document.getElementById('name').value.trim();
-  const cardInput = () => document.getElementById('card').value.trim();
-  const dateInput = () => document.getElementById('date').value.trim();
-  const cvvInput = () => document.getElementById('cvv').value.trim();
+  document.getElementById("modalExito").classList.remove("hidden");
+});

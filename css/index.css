@@ -1,0 +1,7 @@
+#hero {
+  background-image: url("../../assets/img/collage.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
