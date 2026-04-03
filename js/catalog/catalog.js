@@ -1,220 +1,225 @@
 const API_KEY = "12d276e3703dbfd31547bc6f0021075a";
-const YT = "https://www.youtube.com/embed/";
+const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
+const YT_BASE_URL = "https://www.youtube.com/embed/";
 
+let CACHE = {};
 
-window.openMovie = (movie) => openModal(movie, true);
-window.openSeries = (series) => openModal(series, false);
-
-
-let MOVIES_CACHE = {};
-let SERIES_CACHE = {};
-let MULTIMEDIA_MOVIES_CACHE = {};
-let MULTIMEDIA_SERIES_CACHE = {};
-
-async function fetchTrailer(id, type) {
-    const res = await fetch(
-        `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=es-ES`
-    );
-    const data = await res.json();
-
-    return data.results.find(
-        v => v.type === "Trailer" && v.site === "YouTube"
-    );
-}
-
-
-const IMG = "https://image.tmdb.org/t/p/w500";
-
-// ================= MOVIES =================
 export function renderMovies(movies) {
-    const wrapper = document.getElementById("movies-wrapper");
-    wrapper.innerHTML = "";
+    let caja = document.getElementById("movies-card");
+    if (!caja) {
+        return;
+    }
+    
+    let tarjetasHTML = '';
+    
+    for (let i = 0; i < movies.length; i++) {
+        let peli = movies[i];
+        
+        // Evitamos películas sin póster o inválidas
+        if (!peli.poster_path) {
+            continue;
+        }
 
-    movies.forEach(movie => {
-        if (!movie.poster_path) return;
-
-        MOVIES_CACHE[movie.id] = movie;
-
-        wrapper.insertAdjacentHTML("beforeend", `
-    <div class="swiper-slide !w-[160px]">
-    <div
-        class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition" data-id="${movie.id}" data-type="movie">
-        <img
-        src="${IMG}${movie.poster_path}"
-        class="w-full aspect-[2/3] object-cover"
-        alt="${movie.title}"
-        />
-    </div>
-    </div>
-`);
-    });
+        CACHE[peli.id] = peli;
+        
+        let titulo = peli.title;
+        let imagen = peli.poster_path;
+        
+        tarjetasHTML += `
+            <div class="movie-card" data-id="${peli.id}" data-type="movie">
+                <img src="${IMG_BASE_URL}${imagen}" alt="${titulo}" class="shadow-sm hover-scale" />
+            </div>
+        `;
+    }
+    
+    caja.innerHTML = tarjetasHTML;
 }
 
-// ================= SERIES =================
 export function renderSeries(seriesList) {
-    const wrapper = document.getElementById("series-wrapper");
-    wrapper.innerHTML = "";
+    let caja = document.getElementById("series-card");
+    if (!caja) {
+        return;
+    }
+    
+    let tarjetasHTML = '';
+    
+    for (let i = 0; i < seriesList.length; i++) {
+        let serie = seriesList[i];
+        
+        if (!serie.poster_path) {
+            continue;
+        }
 
-    seriesList.forEach(series => {
-        if (!series.poster_path) return;
-
-        SERIES_CACHE[series.id] = series;
-
-        wrapper.insertAdjacentHTML("beforeend", `
-    <div class="swiper-slide !w-[160px]">
-    <div
-    class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition" data-id="${series.id}" data-type="tv">
-        <img
-        src="${IMG}${series.poster_path}"
-        class="w-full aspect-[2/3] object-cover"
-        alt="${series.name}"
-        />
-    </div>
-    </div>
-`);
-    });
-}
-
-
-// ================= SEARCH MULTIMEDIA =================
-export function renderSearchMovies(items) {
-    const wrapper = document.getElementById("movies-wrapper");
-    if (!wrapper) return;
-
-    wrapper.innerHTML = "";
-
-    items.forEach(item => {
-        if (
-            item.media_type === "person" ||
-            (!item.poster_path && !item.backdrop_path)
-        ) return;
-
-        MULTIMEDIA_MOVIES_CACHE[item.id] = item;
-
-        wrapper.insertAdjacentHTML("beforeend", `
-            <div class="swiper-slide !w-[160px]">
-                <div
-                    class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
-                    data-id="${item.id}"
-                    data-type="movie">
-                    <img
-                        src="${IMG}${item.poster_path || item.backdrop_path}"
-                        class="w-full aspect-[2/3] object-cover"
-                        alt="${item.title || item.name}"
-                    />
-                </div>
+        CACHE[serie.id] = serie;
+        
+        let titulo = serie.name;
+        let imagen = serie.poster_path;
+        
+        tarjetasHTML += `
+            <div class="movie-card" data-id="${serie.id}" data-type="tv">
+                <img src="${IMG_BASE_URL}${imagen}" alt="${titulo}" class="shadow-sm hover-scale" />
             </div>
-        `);
-    });
+        `;
+    }
+    
+    caja.innerHTML = tarjetasHTML;
 }
 
-export function renderSearchSeries(items) {
-    const wrapper = document.getElementById("series-wrapper");
-    if (!wrapper) return;
+export function renderSearchMovies(movies) {
+    let caja = document.getElementById("movies-card");
+    if (!caja) {
+        return;
+    }
+    
+    let tarjetasHTML = '';
+    
+    for (let i = 0; i < movies.length; i++) {
+        let peli = movies[i];
+        
+        if (peli.media_type === "person" || (!peli.poster_path && !peli.backdrop_path)) {
+            continue;
+        }
 
-    wrapper.innerHTML = "";
-
-    items.forEach(item => {
-        if (
-            item.media_type === "person" ||
-            (!item.poster_path && !item.backdrop_path)
-        ) return;
-
-        MULTIMEDIA_SERIES_CACHE[item.id] = item;
-
-        wrapper.insertAdjacentHTML("beforeend", `
-            <div class="swiper-slide !w-[160px]">
-                <div
-                    class="movie-card relative rounded-md overflow-hidden cursor-pointer hover:scale-105 transition"
-                    data-id="${item.id}"
-                    data-type="tv">
-                    <img
-                        src="${IMG}${item.poster_path || item.backdrop_path}"
-                        class="w-full aspect-[2/3] object-cover"
-                        alt="${item.title || item.name}"
-                    />
-                </div>
+        CACHE[peli.id] = peli;
+        
+        let titulo = peli.title || peli.name;
+        let imagen = peli.poster_path || peli.backdrop_path;
+        
+        tarjetasHTML += `
+            <div class="movie-card" data-id="${peli.id}" data-type="movie">
+                <img src="${IMG_BASE_URL}${imagen}" alt="${titulo}" class="shadow-sm hover-scale" />
             </div>
-        `);
-    });
+        `;
+    }
+    
+    caja.innerHTML = tarjetasHTML;
 }
 
-// ================= CLEAR CATALOG =================
+export function renderSearchSeries(seriesList) {
+    let caja = document.getElementById("series-card");
+    if (!caja) {
+        return;
+    }
+    
+    let tarjetasHTML = '';
+    
+    for (let i = 0; i < seriesList.length; i++) {
+        let serie = seriesList[i];
+        
+        if (serie.media_type === "person" || (!serie.poster_path && !serie.backdrop_path)) {
+            continue;
+        }
+
+        CACHE[serie.id] = serie;
+        
+        let titulo = serie.name || serie.title;
+        let imagen = serie.poster_path || serie.backdrop_path;
+        
+        tarjetasHTML += `
+            <div class="movie-card" data-id="${serie.id}" data-type="tv">
+                <img src="${IMG_BASE_URL}${imagen}" alt="${titulo}" class="shadow-sm hover-scale" />
+            </div>
+        `;
+    }
+    
+    caja.innerHTML = tarjetasHTML;
+}
 
 export function clearCatalog() {
-    const moviesWrapper = document.getElementById("movies-wrapper");
-    const seriesWrapper = document.getElementById("series-wrapper");
-    const searchWrapper = document.getElementById("search-multimedia-wrapper");
+    let cajaMovies = document.getElementById("movies-card");
+    let cajaSeries = document.getElementById("series-card");
 
-    if (moviesWrapper) moviesWrapper.innerHTML = "";
-    if (seriesWrapper) seriesWrapper.innerHTML = "";
-    if (searchWrapper) searchWrapper.innerHTML = "";
-}
-
-
-
-
-// ================ MODAL =================
-
-const modal = document.getElementById("movie-modal");
-const modalTitle = document.getElementById("modal-title");
-const modalDesc = document.getElementById("modal-description");
-const modalBackdrop = document.getElementById("modal-backdrop");
-const closeModal = document.getElementById("close-modal");
-
-async function openModal(item, isMovie) {
-    modalTitle.textContent = isMovie ? item.title : item.name;
-    modalDesc.textContent = item.overview || "Sin descripción disponible";
-
-    modalBackdrop.style.backgroundImage = `
-    url(https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path})
-    `;
-
-    modal.classList.remove("hidden");
-
-    // 🎞 TRAILER
-    const trailer = await fetchTrailer(
-        item.id,
-        isMovie ? "movie" : "tv"
-    );
-
-    const iframe = document.getElementById("modal-trailer");
-
-    if (trailer) {
-        iframe.src = `${YT}${trailer.key}?autoplay=1&mute=1`;
-        iframe.classList.remove("hidden");
-        modalBackdrop.classList.add("hidden");
-    } else {
-        iframe.classList.add("hidden");
-        modalBackdrop.classList.remove("hidden");
+    if (cajaMovies) {
+        cajaMovies.innerHTML = "";
+    }
+    if (cajaSeries) {
+        cajaSeries.innerHTML = "";
     }
 }
 
 
-closeModal.addEventListener("click", () => {
-    modal.classList.add("hidden");
+// ======================================
+//             MODAL Y CLICS
+// ======================================
 
-    const iframe = document.getElementById("modal-trailer");
-    iframe.src = "";
-});
+const modalElement = document.getElementById("movie-modal");
+const iframe = document.getElementById("modal-trailer");
+const cajaTituloModal = document.getElementById("modal-title");
+const cajaDescModal = document.getElementById("modal-description");
+const cajaFondoModal = document.getElementById("modal-backdrop");
 
-
-document.addEventListener("click", (e) => {
-    const card = e.target.closest(".movie-card");
-    if (!card) return;
-
-    const id = card.dataset.id;
-    const type = card.dataset.type;
-
-    let item = null
-        if (type === "movie"){
-            item = MOVIES_CACHE[id] || MULTIMEDIA_MOVIES_CACHE[id];
-        } else if (type === "tv"){
-            item = SERIES_CACHE[id] || MULTIMEDIA_SERIES_CACHE[id];
+// Al cerrar la ventana, quitamos el video
+if (modalElement) {
+    modalElement.addEventListener('hidden.bs.modal', () => {
+        if (iframe) {
+            iframe.src = "";
         }
-    if (!item) return;
+    });
+}
 
-    openModal(item, type === "movie");
+function obtenerModal() {
+    return bootstrap.Modal.getOrCreateInstance(modalElement);
+}
+
+// Búsqueda de un tráiler en Youtube (Peticion a API)
+async function pedirTrailer(id, tipo) {
+    let url = `https://api.themoviedb.org/3/${tipo}/${id}/videos?api_key=${API_KEY}&language=es-ES`;
+    const datos = await fetch(url);
+    const jsonVideos = await datos.json();
+
+    // Buscar en el arreglo
+    for (let i = 0; i < jsonVideos.results.length; i++) {
+        let video = jsonVideos.results[i];
+        if (video.type === "Trailer" && video.site === "YouTube") {
+            return video; // devolvemos el primero que encontremos
+        }
+    }
+    return null;
+}
+
+// Rellenar datos de ventana
+async function abrirModal(item, tipo) {
+    cajaTituloModal.innerHTML = item.title || item.name;
+    
+    if (item.overview) {
+        cajaDescModal.innerHTML = item.overview;
+    } else {
+        cajaDescModal.innerHTML = "Sin descripción disponible.";
+    }
+
+    let imagenFondo = item.backdrop_path || item.poster_path;
+    cajaFondoModal.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${imagenFondo})`;
+
+    let videoTrailer = await pedirTrailer(item.id, tipo);
+
+    if (videoTrailer !== null) {
+        let urlVideo = `${YT_BASE_URL}${videoTrailer.key}?autoplay=1&mute=1`;
+        iframe.src = urlVideo;
+        iframe.classList.remove("d-none"); // mostrar
+        cajaFondoModal.classList.add("d-none"); // ocultar foto de fondo
+    } else {
+        iframe.classList.add("d-none"); // ocultar youtube
+        cajaFondoModal.classList.remove("d-none"); // mostrar foto de fondo
+    }
+
+    let bsModal = obtenerModal();
+    bsModal.show();
+}
+
+// Evento Global
+document.addEventListener("click", (evento) => {
+    // Verificar si hicimos clic a una tarjeta
+    const tarjeta = evento.target.closest(".movie-card");
+    
+    if (tarjeta !== null) {
+        let idTarjeta = tarjeta.dataset.id;
+        let tipoTarjeta = tarjeta.dataset.type; // tv o movie
+        
+        let itemGuardado = CACHE[idTarjeta];
+        
+        if (itemGuardado !== undefined) {
+            console.log(itemGuardado); // mostrar la info de la peli / serie como demostracion
+            abrirModal(itemGuardado, tipoTarjeta);
+        }
+    }
 });
-
-
