@@ -111,3 +111,15 @@ body {
     aspect-ratio: 2/3;
     object-fit: cover;
 }
+
+/* Utilidades para reemplazar styles en linea */
+.logo-mobile { width: 50px; height: 50px; }
+.logo-desktop { width: 56px; height: 56px; }
+.logo-offcanvas { width: 48px; height: 48px; }
+.z-fixed { z-index: 1020; }
+.hero-text-container { max-width: 600px; }
+.text-light-custom { color: #ccc; }
+.hero-img-container { max-width: 300px; }
+.modal-media-container { height: 60vh; }
+.modal-close-btn { background-color: rgba(0,0,0,0.6) !important; padding: 12px !important; border-radius: 50% !important; opacity: 0.8; }
+.modal-content-custom { background-color: #212529; }
