@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADSOHUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+</head>
+
+<body class="bg-black">
+
+    <!-- HEADER -->
+    <header class="fixed w-full z-50 bg-black/80 backdrop-blur-md px-6 py-2">
+        <div class="flex items-center gap-3">
+            <a href="/pages/inicio/index.html" class="flex items-center gap-2">
+                <img src="/assets/icons/favicon.ico"
+                    class="size-14 hover:scale-110 transition cursor-pointer">
+                <h1 class="text-xl font-bold sm:flex hidden text-[#E50914]">
+                    ADSO<span class="italic text-white">HUB</span>
+                </h1>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <section class="bg-black px-8 md:px-20 py-28 text-white text-center">
+        <h2 class="text-3xl font-bold mb-12">
+            Planes y <span class="text-[#E50914]">precios</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- BÁSICO -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Básico</h3>
+                <p class="text-4xl font-bold mb-6">
+                    $15.000<span class="text-gray-500 text-xl">/mes</span>
+                </p>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> HD streaming</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 2 pantallas</li>
+                    <li class="flex gap-3"><span class="text-gray-600">✗</span> Sin descargas</li>
+                </ul>
+
+                <a href="../UI/login.html"
+                    onclick="abrirFormulario('Básico',15000)"
+                    class="block w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90 text-center">
+                    Elegir plan
+                </a>
+            </div>
+
+            <!-- ESTÁNDAR -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Estándar</h3>
+                <p class="text-4xl font-bold mb-6">
+                    $25.000<span class="text-gray-500 text-xl">/mes</span>
+                </p>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Full HD</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4 pantallas</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
+                </ul>
+
+                <a href="../UI/login.html"
+                    onclick="abrirFormulario('Estándar',25000)"
+                    class="block w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90 text-center">
+                    Elegir plan
+                </a>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="border border-gray-700 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-4">Premium</h3>
+                <p class="text-4xl font-bold mb-6">
+                    $35.000<span class="text-gray-500 text-xl">/mes</span>
+                </p>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4K</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 6 pantallas</li>
+                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
+                </ul>
+
+                <a href="../UI/login.html"
+                    onclick="abrirFormulario('Premium',35000)"
+                    class="block w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90 text-center">
+                    Elegir plan
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="../../js/pagos.js"></script>
+
+</body>
+</html>

@@ -2,6 +2,11 @@ function abrirFormulario(plan, precio) {
   document.getElementById("formularioPago").classList.remove("hidden");
   document.getElementById("planSeleccionado").innerText =
     "Plan " + plan + " - $" + precio.toLocaleString();
+  document.getElementById("planResumen").innerText =
+    "Plan " + plan;
+
+  document.getElementById("totalPrecio").innerText =
+    "$" + precio.toLocaleString();
 }
 
 const tarjeta = document.getElementById("tarjeta");
