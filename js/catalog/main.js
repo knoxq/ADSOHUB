@@ -6,12 +6,6 @@ import {
   clearCatalog
 } from "./catalog.js";
 
-import {
-  initHeroSwiper,
-  initMoviesSwiper,
-  initSeriesSwiper,
-} from "./swiper.js";
-
 
 const API_KEY = "12d276e3703dbfd31547bc6f0021075a";
 
@@ -29,10 +23,6 @@ async function loadHome() {
 
   renderMovies(moviesData.results);
   renderSeries(seriesData.results);
-
-  initHeroSwiper();
-  initMoviesSwiper();
-  initSeriesSwiper();
 }
 
 // ================= FETCH SEARCH =================

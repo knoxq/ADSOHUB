@@ -1,16 +1,12 @@
 // JS main para la sección de Series
 
-import { initSeriesSwiper } from "./swiper.js";
 import { renderSeries } from "./Render.js";
 import { renderSearchSeries } from "./Render.js";
-import { initSearchSeriesSwiper } from "./swiper.js";
 
 // Clave de API de TMDB
-
 const API_KEY = "12d276e3703dbfd31547bc6f0021075a";
 
 // Función para cargar las series populares
-
 async function loadSeries(page = 1) {
     const res = await fetch(
         `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=es-ES&page=${page}`
@@ -18,11 +14,9 @@ async function loadSeries(page = 1) {
     const data = await res.json();
 
     renderSeries(data.results);
-    initSeriesSwiper();
 }
 
 // Cargar las series populares al cargar la página
-
 document.addEventListener("DOMContentLoaded", () => {
     const inputSearch = document.getElementById("searchSeries");
 
@@ -38,14 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const results = await searchSeries(query);
         renderSearchSeries(results);
-        initSearchSeriesSwiper();
     });
 });
 
-
-
 // Función para realizar la búsqueda de series
-
 async function searchSeries(query) {
     const res = await fetch(
         `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=es-ES&query=${(query)}`

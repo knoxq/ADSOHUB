@@ -4,135 +4,124 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADSO HUB - Películas</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
 
-    <title>ADSO HUB</title>
+    <link rel="stylesheet" href="/css/UI/catalog.css">
 </head>
 
-<body class="bg-black text-white">
+<body>
 
     <!-- ================= HEADER ================= -->
-    <header class="p-5 bg-black">
-        <div class="flex justify-between items-center">
+    <header class="p-4 bg-black">
+        <div class="container-fluid px-0 px-md-3 d-flex justify-content-between align-items-center">
 
-            <!-- LOGO -->
-            <button id="menu-toggle" class="flex items-center gap-3 text-red-600 focus:outline-none">
-                <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
-                <h1 class="text-xl font-bold sm:flex hidden">
-                    ADSO<span class="italic">HUB</span>
-                </h1>
+            <button class="btn btn-link text-decoration-none d-flex align-items-center p-0 d-md-none border-0"
+                data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <img src="/assets/icons/favicon.ico" class="hover-scale logo-mobile">
             </button>
 
-            <!-- NAV -->
-            <nav class="hidden md:flex gap-6">
-                <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600 cursor-pointer">Inicio</a>
-                <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600 cursor-pointer">Series</a>
+            <div class="d-none d-md-flex align-items-center gap-3 text-red-custom">
+                <a href="/pages/UI/catalog/catalog.html">
+                    <img src="/assets/icons/favicon.ico" class="hover-scale logo-desktop">
+                </a>
+                <h1 class="h4 mb-0 fw-bold">ADSO<span class="fst-italic text-white">HUB</span></h1>
+            </div>
+
+            <nav class="d-none d-md-flex gap-4">
+                <a href="/pages/UI/catalog/catalog.html"
+                    class="text-white text-decoration-none text-red-custom-hover fw-medium">Inicio</a>
+                <a href="/pages/UI/catalog/secciones/Series.html"
+                    class="text-white text-decoration-none text-red-custom-hover fw-medium">Series</a>
                 <a href="/pages/UI/catalog/secciones/Movies.html"
-                    class="hover:text-red-600 cursor-pointer">Películas</a>
-                <a href="/pages/UI/catalog/secciones/Games.html" class="hover:text-red-600 cursor-pointer">Juegos</a>
-                <a href="/pages/UI/login.html" class="hover:text-red-600 cursor-pointer">Cerrar Sesion</a>
+                    class="text-white text-decoration-none text-red-custom-hover fw-medium">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Games.html"
+                    class="text-white text-decoration-none text-red-custom-hover fw-medium">Juegos</a>
+                <a href="/pages/UI/forms/login.html"
+                    class="text-white text-decoration-none text-red-custom-hover fw-medium">Cerrar Sesión</a>
             </nav>
 
-            <!-- SEARCH -->
-            <div class="flex items-center gap-3">
-                <input type="text"
-                    class="bg-zinc-900 px-4 py-2 rounded-full outline-none border border-zinc-700 focus:border-red-600"
-                    placeholder="🔍 Buscar" id="searchMovies">
+            <div class="d-flex align-items-center">
+                <input type="text" class="form-control rounded-pill search-input px-3 py-2" placeholder="🔍 Buscar"
+                    id="searchMovies">
             </div>
 
         </div>
     </header>
 
-    <!-- ================= MOBILE MENU ================= -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-sm
-        md:hidden
-            opacity-0 pointer-events-none
-            transition-all duration-300 ease-out">
-
-        <div id="mobile-menu-panel" class="p-6 space-y-6
-                transform -translate-y-10
-                transition-transform duration-300 ease-out">
-
-            <!-- APP NAME -->
-            <div class="flex items-center gap-3 text-red-600">
-                <img src="/assets/icons/favicon.ico" class="size-12">
-                <h2 class="text-2xl font-bold">
-                    ADSO<span class="italic">HUB</span>
-                </h2>
+    <!-- ================= MOBILE MENU (OFFCANVAS) ================= -->
+    <div class="offcanvas offcanvas-start bg-dark text-white border-0" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-3 text-red-custom">
+                <img src="/assets/icons/favicon.ico" class="logo-offcanvas">
+                <h5 class="offcanvas-title fw-bold">ADSO<span class="fst-italic text-white">HUB</span></h5>
             </div>
-
-            <!-- NAV LINKS -->
-            <nav class="flex flex-col gap-4 text-lg">
-                <a href="/pages/UI/catalog/catalog.html" class="hover:text-red-600">Inicio</a>
-                <a href="/pages/UI/catalog/secciones/Series.html" class="hover:text-red-600">Series</a>
-                <a href="/pages/UI/catalog/secciones/Movies.html" class="hover:text-red-600">Películas</a>
-                <a href="/pages/UI/catalog/secciones/Games.html" class="hover:text-red-600">Juegos</a>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="nav flex-column gap-3 fs-5 mt-3">
+                <a href="/pages/UI/catalog/catalog.html"
+                    class="nav-link text-white px-0 text-red-custom-hover">Inicio</a>
+                <a href="/pages/UI/catalog/secciones/Series.html"
+                    class="nav-link text-white px-0 text-red-custom-hover">Series</a>
+                <a href="/pages/UI/catalog/secciones/Movies.html"
+                    class="nav-link text-white px-0 text-red-custom-hover">Películas</a>
+                <a href="/pages/UI/catalog/secciones/Games.html"
+                    class="nav-link text-white px-0 text-red-custom-hover">Juegos</a>
+                <a href="/pages/UI/forms/login.html"
+                    class="nav-link text-danger px-0 mt-4 border-top border-secondary pt-4">Cerrar Sesión</a>
             </nav>
-
-            <!-- CLOSE -->
-            <button id="close-menu" class="mt-10 text-zinc-400 hover:text-white">
-                Cerrar
-            </button>
-
         </div>
     </div>
 
-
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <!-- GRID CON SWIPER -->
-    <main class="p-6">
-        <div id="movies-wrapper" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <!-- MAIN CONTENT -->
+    <main class="container-fluid px-4 py-4 mb-5">
+        <h2 class="h3 fw-bold mb-4">Películas Populares</h2>
+        <div id="movies-card" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+            <!-- JS Inject -->
         </div>
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-3 position-fixed bottom-0 w-100 border-top border-secondary z-fixed">
+        <div class="container">
+            <span class="text-white-50">© 2026 ADSOHUB. Todos los derechos reservados.</span>
+        </div>
+    </footer>
 
+    <!-- MODAL BOOTSTRAP -->
+    <div class="modal fade" id="movie-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-0 rounded-3 overflow-hidden">
 
-    <!-- ================= SCRIPTS ================= -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script type="module" src="/js/catalog/secciones/Movies/main.js"></script>
-    <script src="/js/header/header.js"></script>
+                <div class="position-relative bg-black d-flex align-items-center justify-content-center modal-media-container">
+                    <iframe id="modal-trailer" class="w-100 h-100 d-none" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div id="modal-backdrop"></div>
 
+                    <button type="button" id="close-modal-btn"
+                        class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 modal-close-btn" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
 
-    <!-- MODAL -->
-    <div id="movie-modal"
-        class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center">
-        <div class="relative max-w-5xl w-full mx-4 bg-zinc-900 rounded-lg overflow-hidden max-h-[90vh] flex flex-col">
-            <!-- BOTÓN CERRAR -->
-            <button id="close-modal" class="absolute top-4 right-4 z-50
-        bg-black/70 hover:bg-black
-        text-white text-2xl
-        w-10 h-10 rounded-full
-        flex items-center justify-center">
-                ✕
-            </button>
-
-
-            <!-- MEDIA -->
-            <div class="relative h-[60vh] bg-black flex items-center justify-center">
-                <iframe id="modal-trailer" class="w-full h-full hidden" frameborder="0"
-                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                <div id="modal-backdrop" class="absolute inset-0 bg-cover bg-center"></div>
-            </div>
-
-
-            <!-- CONTENT -->
-            <div class="p-6 space-y-4">
-                <h2 id="modal-title" class="text-3xl font-bold text-white"></h2>
-                <p id="modal-description" class="text-zinc-300"></p>
+                <div class="p-4 p-md-5 position-relative z-1 modal-content-custom">
+                    <h2 id="modal-title" class="display-6 fw-bold mb-3"></h2>
+                    <p id="modal-description" class="fs-5 text-light"></p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/catalog/secciones/Movies/main.js"></script>
 
 </body>
 
