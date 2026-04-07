@@ -31,10 +31,12 @@
       </div>
 
       <div class="flex gap-4">
-        <button
-          class="border border-[#E50914] text-[#E50914] px-5 py-2 rounded transition duration-300 hover:bg-[#E50914] hover:text-white">
-          Iniciar sesión
-        </button>
+        <a href="/pages/UI/forms/login.html">
+          <button
+            class="border border-[#E50914] text-[#E50914] px-5 py-2 rounded transition duration-300 hover:bg-[#E50914] hover:text-white">
+            Iniciar sesión
+          </button>
+        </a>
         <a href="pasareladepagos.html">
           <button class="bg-[#E50914] px-5 py-2 rounded transition duration-300 hover:opacity-80">
             Suscríbete ahora
@@ -159,15 +161,6 @@
     <div id="tv" class="grid grid-cols-2 md:grid-cols-5 gap-6"></div>
   </section>
 
-  <!-- MODAL TRAILER -->
-  <div id="trailerModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
-    <div class="relative w-[90%] md:w-[900px]">
-      <button onclick="cerrarTrailer()" class="absolute -top-12 right-0 text-white text-2xl">✕</button>
-
-      <iframe id="trailerFrame" class="w-full h-[500px] rounded-xl" allowfullscreen></iframe>
-    </div>
-  </div>
-
   <!-- FAQ -->
   <section class="bg-black px-8 md:px-20 py-20">
     <h2 class="text-3xl font-bold mb-12">Preguntas frecuentes</h2>
@@ -175,23 +168,37 @@
     <div class="space-y-6">
 
       <details class="border-b border-gray-700 pb-4">
+        <summary class="cursor-pointer text-lg">¿Qué puedo encontrar en ADSOHUB?</summary>
+        <p class="text-gray-400 mt-2">
+          Nuestra plataforma ofrece un extenso catálogo de información sobre tus películas y series favoritas. Ten en cuenta que nuestro sitio web solo permite ver tráileres, títulos y descripciones detalladas, no ofrecemos reproducción de películas completas.
+        </p>
+      </details>
+
+      <details class="border-b border-gray-700 pb-4">
         <summary class="cursor-pointer text-lg">¿Cómo me registro?</summary>
         <p class="text-gray-400 mt-2">
-          Solo debes crear una cuenta y elegir un plan.
+          Solo debes crear una cuenta eligiendo un correo y contraseña, y luego seleccionar el plan que mejor se adapte a ti.
+        </p>
+      </details>
+
+      <details class="border-b border-gray-700 pb-4">
+        <summary class="cursor-pointer text-lg">¿Puedo cancelar mi suscripción luego de adquirir un plan?</summary>
+        <p class="text-gray-400 mt-2">
+          Es importante destacar que nuestro sitio web no cuenta con un modo de cancelación de la suscripción. Te invitamos a revisar detenidamente nuestros planes antes de realizar el pago.
         </p>
       </details>
 
       <details class="border-b border-gray-700 pb-4">
         <summary class="cursor-pointer text-lg">¿Dónde está disponible?</summary>
         <p class="text-gray-400 mt-2">
-          Disponible en la mayoría de países.
+          ADSOHUB está disponible en la mayoría de países a nivel mundial. Solo necesitas una conexión a internet estable para navegar por nuestros catálogos.
         </p>
       </details>
 
       <details class="border-b border-gray-700 pb-4">
         <summary class="cursor-pointer text-lg">¿En qué dispositivos funciona?</summary>
         <p class="text-gray-400 mt-2">
-          Smart TV, celulares, tablets y navegadores web.
+          Nuestra plataforma web está optimizada para que puedas buscar información y ver tráileres en Smart TVs, celulares, tablets y computadoras a través de tu navegador de internet.
         </p>
       </details>
 
@@ -204,6 +211,9 @@
     <p class="text-sm mt-2">
       Plataforma informativa de películas y series
     </p>
+    <div class="mt-4">
+      <a href="/pages/terminos.html" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 hover:text-white transition underline">Términos y Condiciones</a>
+    </div>
     <div class="flex justify-center gap-6 mt-6 text-xl">
       <a href="#" class="hover:text-white transition duration-300">
         <i class="fa-brands fa-facebook"></i>
