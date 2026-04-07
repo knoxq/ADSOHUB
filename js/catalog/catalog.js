@@ -15,7 +15,7 @@ export function renderMovies(movies) {
     for (let i = 0; i < movies.length; i++) {
         let peli = movies[i];
         
-        // Evitamos películas sin póster o inválidas
+        // películas sin póster o inválidas
         if (!peli.poster_path) {
             continue;
         }
@@ -206,19 +206,16 @@ async function abrirModal(item, tipo) {
     bsModal.show();
 }
 
-// Evento Global
 document.addEventListener("click", (evento) => {
-    // Verificar si hicimos clic a una tarjeta
     const tarjeta = evento.target.closest(".movie-card");
     
     if (tarjeta !== null) {
         let idTarjeta = tarjeta.dataset.id;
-        let tipoTarjeta = tarjeta.dataset.type; // tv o movie
+        let tipoTarjeta = tarjeta.dataset.type;
         
         let itemGuardado = CACHE[idTarjeta];
         
         if (itemGuardado !== undefined) {
-            console.log(itemGuardado); // mostrar la info de la peli / serie como demostracion
             abrirModal(itemGuardado, tipoTarjeta);
         }
     }

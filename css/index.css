@@ -1,7 +1,181 @@
+/* =============================================
+   ADSOHUB - Custom Bootstrap Helpers
+   ============================================= */
+
+/* --- Layout Hero --- */
 #hero {
   background-image: url("../../assets/img/collage.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  min-height: 100vh;
+}
+
+/* --- Hero overlay --- */
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.80);
+}
+
+/* --- Hero content --- */
+.hero-content {
+  max-width: 780px;
+}
+
+/* --- Navbar glass effect --- */
+.navbar-glass {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --- Nav logo --- */
+.nav-logo {
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.nav-logo:hover { transform: scale(1.1); }
+
+/* --- Nav links container --- */
+.nav-links { color: #d1d5db; }
+
+/* --- Color corporativo ADSOHUB rojo --- */
+:root {
+  --adso-red: #E50914;
+}
+
+.text-adso-red   { color: var(--adso-red) !important; }
+.bg-adso-red     { background-color: var(--adso-red) !important; }
+.border-adso-red { border-color: var(--adso-red) !important; }
+
+.btn-adso {
+  background-color: var(--adso-red);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  transition: opacity .25s;
+}
+.btn-adso:hover   { opacity: .85; color: #fff; }
+
+.btn-adso-outline {
+  background-color: transparent;
+  color: var(--adso-red);
+  border: 1.5px solid var(--adso-red);
+  font-weight: 600;
+  transition: background-color .25s, color .25s;
+}
+.btn-adso-outline:hover {
+  background-color: var(--adso-red);
+  color: #fff;
+}
+
+/* --- Border grises --- */
+.border-gray-700 { border-color: #374151 !important; }
+.border-gray-800 { border-color: #1f2937 !important; }
+
+/* --- Texto gris --- */
+.text-gray-300 { color: #d1d5db !important; }
+.text-gray-400 { color: #9ca3af !important; }
+.text-gray-500 { color: #6b7280 !important; }
+
+/* --- Grilla de películas / series --- */
+#movies, #tv {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  overflow: hidden;
+}
+@media (min-width: 576px) {
+  #movies, #tv { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 768px) {
+  #movies, #tv { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+}
+
+/* --- Tarjeta individual de película/serie --- */
+.movie-thumb {
+  overflow: hidden;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.movie-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: .5rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.movie-thumb:hover img {
+  transform: scale(1.06);
+  box-shadow: 0 8px 24px rgba(229, 9, 20, .35);
+}
+
+/* --- FAQ --- */
+.faq-container { max-width: 860px; }
+details summary { cursor: pointer; }
+details summary::-webkit-details-marker { display: none; }
+details[open] summary { color: #fff; }
+
+/* --- Tarjetas de plan --- */
+.plan-card {
+  border: 1px solid #374151;
+  border-radius: .75rem;
+  padding: 2rem;
+  background-color: #000;
+  color: #fff;
+  transition: border-color .3s;
+}
+.plan-card:hover { border-color: var(--adso-red); }
+
+/* --- Formulario de pago --- */
+.pago-form-wrapper {
+  max-width: 900px;
+  margin: auto;
+}
+
+.form-control-dark {
+  background-color: #000;
+  border: 1px solid #374151;
+  color: #fff;
+  border-radius: .5rem;
+  padding: .75rem;
+}
+.form-control-dark::placeholder { color: #6b7280; }
+.form-control-dark:focus {
+  background-color: #111;
+  border-color: var(--adso-red);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* --- Panel oscuro (resumen + formulario) --- */
+.panel-dark {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: .75rem;
+}
+
+/* --- Modal de éxito --- */
+#modalExito {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+#modalExito.show { display: flex; }
+
+.modal-exito-box {
+  width: 320px;
+}
+
+/* --- Pasarela: sección planes con offset del header --- */
+.planes-section {
+  padding-top: 6rem;
 }

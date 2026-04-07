@@ -5,233 +5,170 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ADSOHUB</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
   <link rel="stylesheet" href="../../css/index.css">
 </head>
 
 <body class="bg-black text-white">
+
   <!-- NAVBAR -->
-  <header class="fixed w-full z-50 bg-black/80 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-12">
-        <div class="flex items-center gap-2">
-          <img src="/assets/icons/favicon.ico" class="size-14 hover:scale-110 transition cursor-pointer">
-          <h1 class="text-xl font-bold sm:flex hidden text-[#E50914]">ADSO<span class="italic text-white">HUB</span>
-          </h1>
+  <nav class="navbar fixed-top navbar-glass px-3 py-2">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+
+      <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center gap-2">
+          <img src="/assets/icons/favicon.ico" class="nav-logo">
+          <h1 class="h5 fw-bold mb-0 d-none d-sm-block text-adso-red">ADSO<span class="fst-italic text-white">HUB</span></h1>
         </div>
 
-        <nav class="hidden md:flex gap-8 text-gray-300 font-semibold">
-          <a href="#" class="hover:text-white transition">Inicio</a>
-          <a href="#peliculas" class="hover:text-white transition">Películas</a>
-          <a href="#series" class="hover:text-white transition">Series</a>
-        </nav>
-
+        <div class="d-none d-md-flex gap-4 fw-semibold nav-links">
+          <a href="#" class="text-decoration-none text-gray-300">Inicio</a>
+          <a href="#peliculas" class="text-decoration-none text-gray-300">Películas</a>
+          <a href="#series" class="text-decoration-none text-gray-300">Series</a>
+        </div>
       </div>
 
-      <div class="flex gap-4">
+      <div class="d-flex gap-2">
         <a href="/pages/UI/forms/login.html">
-          <button
-            class="border border-[#E50914] text-[#E50914] px-5 py-2 rounded transition duration-300 hover:bg-[#E50914] hover:text-white">
-            Iniciar sesión
-          </button>
+          <button class="btn btn-adso-outline px-4 py-2">Iniciar sesión</button>
         </a>
         <a href="pasareladepagos.html">
-          <button class="bg-[#E50914] px-5 py-2 rounded transition duration-300 hover:opacity-80">
-            Suscríbete ahora
-          </button>
+          <button class="btn btn-adso px-4 py-2">Suscríbete ahora</button>
         </a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- Bienvenida -->
-  <section id="hero" class="relative min-h-screen flex items-center justify-center text-center px-6">
-    <div class="absolute inset-0 bg-black/80"></div>
+  <!-- HERO -->
+  <section id="hero" class="d-flex align-items-center justify-content-center text-center px-3">
+    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
-    <div class="relative z-10 flex flex-col gap-6 max-w-3xl">
-      <h2 class="text-4xl md:text-6xl font-extrabold">
-        Bienvenido a <span class="text-[#E50914]">ADSO<span class="text-white">HUB</span></span>
+    <div class="hero-content position-relative z-1 d-flex flex-column gap-3">
+      <h2 class="display-4 fw-bolder">
+        Bienvenido a <span class="text-adso-red">ADSO<span class="text-white">HUB</span></span>
       </h2>
-      <p class="text-gray-300 text-lg md:text-xl">
+      <p class="text-gray-300 fs-5">
         Disfruta de la mejor información de películas y series
       </p>
-      <div class="flex justify-center gap-4 mt-4">
+      <div class="d-flex justify-content-center gap-3 mt-3">
         <a href="pasareladepagos.html">
-          <button class="bg-[#E50914] px-6 py-3 rounded font-semibold hover:opacity-80 transition">
-            Suscríbete ahora
-          </button>
+          <button class="btn btn-adso px-4 py-2 fw-semibold">Suscríbete ahora</button>
         </a>
       </div>
     </div>
-
   </section>
 
-
   <!-- PLANES -->
-  <section class="bg-black px-8 md:px-20 py-20">
-    <h2 class="text-3xl font-bold mb-12">Planes y precios</h2>
+  <section class="bg-black py-5 px-3 px-md-5">
+    <h2 class="fw-bold fs-2 mb-5">Planes y precios</h2>
+    <div class="row g-4">
 
-    <div class="grid md:grid-cols-3 gap-8">
-
-      <!-- BÁSICO -->
-      <div class="border border-gray-700 rounded-xl p-8">
-        <h3 class="text-2xl font-bold mb-4">Básico</h3>
-        <p class="text-4xl font-bold mb-6">$15.000<span class="text-gray-500 text-xl">/mes</span></p>
-
-        <ul class="space-y-3 mb-8">
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> HD streaming
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> 2 pantallas
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-gray-600">✗</span> Sin descargas
-          </li>
-        </ul>
-
-        <a href="pasareladepagos.html">
-          <button class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-            Elegir plan
-          </button>
-        </a>
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column">
+          <h3 class="fs-4 fw-bold mb-3">Básico</h3>
+          <p class="fs-1 fw-bold mb-4">$15.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled mb-4 flex-grow-1">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> HD streaming</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 2 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-gray-500">✗</span> Sin descargas</li>
+          </ul>
+          <a href="pasareladepagos.html" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</a>
+        </div>
       </div>
 
-      <!-- ESTÁNDAR -->
-      <div class="border border-gray-700 rounded-xl p-8">
-        <h3 class="text-2xl font-bold mb-4">Estándar</h3>
-        <p class="text-4xl font-bold mb-6">$25.000<span class="text-gray-500 text-xl">/mes</span></p>
-
-        <ul class="space-y-3 mb-8">
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> Full HD streaming
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> 4 pantallas
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> Descargas
-          </li>
-        </ul>
-
-        <a href="pasareladepagos.html">
-          <button class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-            Elegir plan
-          </button>
-        </a>
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column">
+          <h3 class="fs-4 fw-bold mb-3">Estándar</h3>
+          <p class="fs-1 fw-bold mb-4">$25.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled mb-4 flex-grow-1">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Full HD streaming</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 4 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Descargas</li>
+          </ul>
+          <a href="pasareladepagos.html" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</a>
+        </div>
       </div>
 
-      <!-- PREMIUM -->
-      <div class="border border-gray-700 rounded-xl p-8">
-        <h3 class="text-2xl font-bold mb-4">Premium</h3>
-        <p class="text-4xl font-bold mb-6">$35.000<span class="text-gray-500 text-xl">/mes</span></p>
-
-        <ul class="space-y-3 mb-8">
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> 4K streaming
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> 6 pantallas
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-[#E50914]">✓</span> Descargas
-          </li>
-        </ul>
-
-        <a href="pasareladepagos.html">
-          <button class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-            Elegir plan
-          </button>
-        </a>
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column">
+          <h3 class="fs-4 fw-bold mb-3">Premium</h3>
+          <p class="fs-1 fw-bold mb-4">$35.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled mb-4 flex-grow-1">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 4K streaming</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 6 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Descargas</li>
+          </ul>
+          <a href="pasareladepagos.html" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</a>
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- PELÍCULAS -->
-  <section id="peliculas" class="px-8 md:px-20 py-16">
-    <h3 class="text-2xl font-bold mb-8">Películas populares</h3>
-    <div id="movies" class="grid grid-cols-2 md:grid-cols-5 gap-6"></div>
+  <section id="peliculas" class="py-5 px-3 px-md-5">
+    <h3 class="fs-3 fw-bold mb-4">Películas populares</h3>
+    <div id="movies"></div>
   </section>
 
   <!-- SERIES -->
-  <section id="series" class="px-8 md:px-20 py-16">
-    <h3 class="text-2xl font-bold mb-8">Series populares</h3>
-    <div id="tv" class="grid grid-cols-2 md:grid-cols-5 gap-6"></div>
+  <section id="series" class="py-5 px-3 px-md-5">
+    <h3 class="fs-3 fw-bold mb-4">Series populares</h3>
+    <div id="tv"></div>
   </section>
 
   <!-- FAQ -->
-  <section class="bg-black px-8 md:px-20 py-20">
-    <h2 class="text-3xl font-bold mb-12">Preguntas frecuentes</h2>
+  <section class="bg-black py-5 px-3 px-md-5 d-flex justify-content-center align-items-center flex-column">
+    <h2 class="fw-bold fs-2 mb-5">Preguntas frecuentes</h2>
+    <div class="faq-container d-flex flex-column gap-4">
 
-    <div class="space-y-6">
-
-      <details class="border-b border-gray-700 pb-4">
-        <summary class="cursor-pointer text-lg">¿Qué puedo encontrar en ADSOHUB?</summary>
-        <p class="text-gray-400 mt-2">
-          Nuestra plataforma ofrece un extenso catálogo de información sobre tus películas y series favoritas. Ten en cuenta que nuestro sitio web solo permite ver tráileres, títulos y descripciones detalladas, no ofrecemos reproducción de películas completas.
-        </p>
+      <details class="border-bottom border-gray-700 pb-3">
+        <summary class="fs-5 py-1">¿Qué puedo encontrar en ADSOHUB?</summary>
+        <p class="text-gray-400 mt-2">Nuestra plataforma ofrece un extenso catálogo de información sobre tus películas y series favoritas. Ten en cuenta que nuestro sitio web solo permite ver tráileres, títulos y descripciones detalladas, no ofrecemos reproducción de películas completas.</p>
       </details>
 
-      <details class="border-b border-gray-700 pb-4">
-        <summary class="cursor-pointer text-lg">¿Cómo me registro?</summary>
-        <p class="text-gray-400 mt-2">
-          Solo debes crear una cuenta eligiendo un correo y contraseña, y luego seleccionar el plan que mejor se adapte a ti.
-        </p>
+      <details class="border-bottom border-gray-700 pb-3">
+        <summary class="fs-5 py-1">¿Cómo me registro?</summary>
+        <p class="text-gray-400 mt-2">Solo debes crear una cuenta eligiendo un correo y contraseña, y luego seleccionar el plan que mejor se adapte a ti.</p>
       </details>
 
-      <details class="border-b border-gray-700 pb-4">
-        <summary class="cursor-pointer text-lg">¿Puedo cancelar mi suscripción luego de adquirir un plan?</summary>
-        <p class="text-gray-400 mt-2">
-          Es importante destacar que nuestro sitio web no cuenta con un modo de cancelación de la suscripción. Te invitamos a revisar detenidamente nuestros planes antes de realizar el pago.
-        </p>
+      <details class="border-bottom border-gray-700 pb-3">
+        <summary class="fs-5 py-1">¿Puedo cancelar mi suscripción luego de adquirir un plan?</summary>
+        <p class="text-gray-400 mt-2">Es importante destacar que nuestro sitio web no cuenta con un modo de cancelación de la suscripción. Te invitamos a revisar detenidamente nuestros planes antes de realizar el pago.</p>
       </details>
 
-      <details class="border-b border-gray-700 pb-4">
-        <summary class="cursor-pointer text-lg">¿Dónde está disponible?</summary>
-        <p class="text-gray-400 mt-2">
-          ADSOHUB está disponible en la mayoría de países a nivel mundial. Solo necesitas una conexión a internet estable para navegar por nuestros catálogos.
-        </p>
+      <details class="border-bottom border-gray-700 pb-3">
+        <summary class="fs-5 py-1">¿Dónde está disponible?</summary>
+        <p class="text-gray-400 mt-2">ADSOHUB está disponible en la mayoría de países a nivel mundial. Solo necesitas una conexión a internet estable para navegar por nuestros catálogos.</p>
       </details>
 
-      <details class="border-b border-gray-700 pb-4">
-        <summary class="cursor-pointer text-lg">¿En qué dispositivos funciona?</summary>
-        <p class="text-gray-400 mt-2">
-          Nuestra plataforma web está optimizada para que puedas buscar información y ver tráileres en Smart TVs, celulares, tablets y computadoras a través de tu navegador de internet.
-        </p>
+      <details class="border-bottom border-gray-700 pb-3">
+        <summary class="fs-5 py-1">¿En qué dispositivos funciona?</summary>
+        <p class="text-gray-400 mt-2">Nuestra plataforma web está optimizada para que puedas buscar información y ver tráileres en Smart TVs, celulares, tablets y computadoras a través de tu navegador de internet.</p>
       </details>
 
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-gray-800 py-10 text-center text-gray-500">
-    <p class="text-white font-semibold text-lg"><span class="text-[#E50914]">ADSO</span><span class="text-white">HUB</span></p>
-    <p class="text-sm mt-2">
-      Plataforma informativa de películas y series
-    </p>
-    <div class="mt-4">
-      <a href="/pages/terminos.html" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 hover:text-white transition underline">Términos y Condiciones</a>
+  <footer class="border-top border-gray-800 py-5 text-center text-gray-500">
+    <p class="text-white fw-semibold fs-5 mb-1"><span class="text-adso-red">ADSO</span><span class="text-white">HUB</span></p>
+    <p class="small mb-2">Plataforma informativa de películas y series</p>
+    <div class="mb-3">
+      <a href="/pages/terminos.html" target="_blank" rel="noopener noreferrer" class="small text-gray-400 text-decoration-underline">Términos y Condiciones</a>
     </div>
-    <div class="flex justify-center gap-6 mt-6 text-xl">
-      <a href="#" class="hover:text-white transition duration-300">
-        <i class="fa-brands fa-facebook"></i>
-      </a>
-      <a href="#" class="hover:text-white transition duration-300">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="#" class="hover:text-white transition duration-300">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-      <a href="#" class="hover:text-white transition duration-300">
-        <i class="fa-brands fa-youtube"></i>
-      </a>
+    <div class="d-flex justify-content-center gap-4 fs-5 mb-3">
+      <a href="#" class="text-gray-400 text-decoration-none"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" class="text-gray-400 text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="text-gray-400 text-decoration-none"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" class="text-gray-400 text-decoration-none"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <p class="text-xs mt-6">
-      © 2026 <span class="text-[#E50914]">ADSO</span><span class="text-white">HUB</span> · Todos los derechos reservados
-    </p>
+    <p class="small mb-0">© 2026 <span class="text-adso-red">ADSO</span><span class="text-white">HUB</span> · Todos los derechos reservados</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="../../js/index.js"></script>
 </body>
 

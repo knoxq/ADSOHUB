@@ -2,169 +2,127 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADSOHUB | Pasarela de Pago</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADSOHUB | Pasarela de Pago</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/index.css">
 </head>
 
-<body class="bg-black text-white min-h-screen flex items-center justify-center p-6">
+<body class="bg-black text-white">
 
-    <section class="bg-black px-8 md:px-20 py-20 text-white text-center">
-        <h2 class="text-3xl font-bold mb-12">Planes y <span class="text-[#E50914]">precios</span></h2>
+  <!-- PLANES -->
+  <section class="py-5 px-3 px-md-5 text-center">
+    <h2 class="fw-bold fs-2 mb-5">Planes y <span class="text-adso-red">precios</span></h2>
 
-        <div class="grid md:grid-cols-3 gap-8">
+    <div class="row g-4 justify-content-center mb-5">
 
-            <!-- BÁSICO -->
-            <div class="border border-gray-700 rounded-xl p-8">
-                <h3 class="text-2xl font-bold mb-4">Básico</h3>
-                <p class="text-4xl font-bold mb-6">$15.000<span class="text-gray-500 text-xl">/mes</span></p>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> HD streaming</li>
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 2 pantallas</li>
-                    <li class="flex gap-3"><span class="text-gray-600">✗</span> Sin descargas</li>
-                </ul>
-                <button onclick="abrirFormulario('Básico',15000)"
-                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-                    Elegir plan
-                </button>
-            </div>
-
-            <!-- ESTÁNDAR -->
-            <div class="border border-gray-700 rounded-xl p-8">
-                <h3 class="text-2xl font-bold mb-4">Estándar</h3>
-                <p class="text-4xl font-bold mb-6">$25.000<span class="text-gray-500 text-xl">/mes</span></p>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Full HD</li>
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4 pantallas</li>
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
-                </ul>
-                <button onclick="abrirFormulario('Estándar',25000)"
-                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-                    Elegir plan
-                </button>
-            </div>
-
-            <!-- PREMIUM -->
-            <div class="border border-gray-700 rounded-xl p-8">
-                <h3 class="text-2xl font-bold mb-4">Premium</h3>
-                <p class="text-4xl font-bold mb-6">$35.000<span class="text-gray-500 text-xl">/mes</span></p>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 4K</li>
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> 6 pantallas</li>
-                    <li class="flex gap-3"><span class="text-[#E50914]">✓</span> Descargas</li>
-                </ul>
-                <button onclick="abrirFormulario('Premium',35000)"
-                    class="w-full bg-[#E50914] py-3 rounded font-bold hover:opacity-90">
-                    Elegir plan
-                </button>
-            </div>
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column text-start">
+          <h3 class="fs-4 fw-bold mb-3">Básico</h3>
+          <p class="fs-1 fw-bold mb-4">$15.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled flex-grow-1 mb-4">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> HD streaming</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 2 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-gray-500">✗</span> Sin descargas</li>
+          </ul>
+          <button onclick="abrirFormulario('Básico', 15000)" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</button>
         </div>
+      </div>
 
-        <!-- FORMULARIO -->
-        <main id="formularioPago" class="hidden max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 mt-12">
-
-            <section class="bg-zinc-900 p-8 rounded-xl border border-zinc-800">
-
-                <header class="mb-6">
-                    <h1 class="text-3xl font-bold text-red-500">
-                        Pasarela de Pago ADSOHUB
-                    </h1>
-                    <p id="planSeleccionado" class="text-gray-400 mt-1"></p>
-                </header>
-
-                <form id="formPago" class="space-y-5">
-
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-1">
-                            Nombre en la tarjeta
-                        </label>
-                        <input type="text" placeholder="Nombre completo" required
-                            class="w-full bg-black border border-zinc-700 rounded-lg p-3">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-1">
-                            Número de tarjeta
-                        </label>
-                        <input type="text" id="tarjeta" maxlength="16" placeholder="0000 0000 0000 0000" required
-                            class="w-full bg-black border border-zinc-700 rounded-lg p-3">
-
-                        <p id="tipoTarjeta" class="text-sm text-gray-400 mt-1"></p>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">
-                                Expiración
-                            </label>
-                            <input type="text" id="fecha" maxlength="5" placeholder="MM/AA" required
-                                class="w-full bg-black border border-zinc-700 rounded-lg p-3">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">
-                                CVV
-                            </label>
-                            <input type="password" id="cvv" maxlength="3" placeholder="***" required
-                                class="w-full bg-black border border-zinc-700 rounded-lg p-3">
-                        </div>
-                    </div>
-
-                    <!-- BOTÓN CORREGIDO -->
-                    <button type="submit"
-                        class="w-full bg-red-600 hover:bg-red-700 transition p-3 rounded-lg font-semibold mt-2">
-                        Pagar ahora
-                    </button>
-
-                </form>
-
-                <div id="paymentMessage" class="mt-4 font-semibold"></div>
-
-            </section>
-
-            <!-- RESUMEN -->
-            <aside class="bg-zinc-900 p-8 rounded-xl border border-zinc-800">
-                <h2 class="text-xl font-semibold mb-6 text-red-500">
-                    Resumen del pedido
-                </h2>
-
-                <div class="space-y-3 text-gray-300">
-                    <div class="flex justify-between">
-                        <span>Producto</span>
-                        <p id="planResumen" class="text-gray-400 mt-1"></p>
-                    </div>
-                </div>
-
-                <hr class="my-6 border-zinc-700">
-
-                <div class="flex justify-between text-lg font-bold text-white">
-                    <span>Total</span>
-                    <span id="totalPrecio" class="text-red-500"></span>
-                </div>
-            </aside>
-
-        </main>
-
-    </section>
-
-    <!-- MODAL -->
-    <div id="modalExito" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
-
-        <div class="bg-black text-white p-6 rounded text-center w-80">
-
-            <h2 class="text-xl font-bold mb-2">✅ Pago exitoso</h2>
-            <p class="mb-4">Gracias por tu compra</p>
-
-            <a href="../UI/forms/login.html"
-                class="block w-full bg-red-600 hover:bg-red-700 transition p-3 rounded-lg font-semibold text-center">
-                Continuar
-            </a>
-
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column text-start">
+          <h3 class="fs-4 fw-bold mb-3">Estándar</h3>
+          <p class="fs-1 fw-bold mb-4">$25.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled flex-grow-1 mb-4">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Full HD</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 4 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Descargas</li>
+          </ul>
+          <button onclick="abrirFormulario('Estándar', 25000)" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</button>
         </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="plan-card h-100 d-flex flex-column text-start">
+          <h3 class="fs-4 fw-bold mb-3">Premium</h3>
+          <p class="fs-1 fw-bold mb-4">$35.000<span class="text-gray-500 fs-5">/mes</span></p>
+          <ul class="list-unstyled flex-grow-1 mb-4">
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 4K</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> 6 pantallas</li>
+            <li class="d-flex align-items-center gap-2 mb-2"><span class="text-adso-red">✓</span> Descargas</li>
+          </ul>
+          <button onclick="abrirFormulario('Premium', 35000)" class="btn btn-adso w-100 py-2 fw-bold">Elegir plan</button>
+        </div>
+      </div>
+
     </div>
-    <script src="../../js/pagos.js"></script>
 
+    <!-- FORMULARIO DE PAGO -->
+    <main id="formularioPago" class="pago-form-wrapper d-none mt-5">
+      <div class="row g-4">
+
+        <div class="col-12 col-lg-7">
+          <div class="panel-dark p-4 p-md-5 text-start">
+            <h1 class="fs-3 fw-bold text-adso-red mb-1">Pasarela de Pago ADSOHUB</h1>
+            <p id="planSeleccionado" class="text-gray-400 mb-4"></p>
+
+            <form id="formPago" class="d-grid gap-3">
+              <div>
+                <label class="form-label text-gray-400 small mb-1">Nombre en la tarjeta</label>
+                <input type="text" placeholder="Nombre completo" required class="form-control form-control-dark">
+              </div>
+              <div>
+                <label class="form-label text-gray-400 small mb-1">Número de tarjeta</label>
+                <input type="text" id="tarjeta" maxlength="16" placeholder="0000 0000 0000 0000" required class="form-control form-control-dark">
+                <p id="tipoTarjeta" class="small text-gray-400 mt-1"></p>
+              </div>
+              <div class="row g-3">
+                <div class="col-6">
+                  <label class="form-label text-gray-400 small mb-1">Expiración</label>
+                  <input type="text" id="fecha" maxlength="5" placeholder="MM/AA" required class="form-control form-control-dark">
+                </div>
+                <div class="col-6">
+                  <label class="form-label text-gray-400 small mb-1">CVV</label>
+                  <input type="password" id="cvv" maxlength="3" placeholder="***" required class="form-control form-control-dark">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-adso w-100 py-2 fw-semibold mt-1">Pagar ahora</button>
+            </form>
+            <div id="paymentMessage" class="mt-3 fw-semibold"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <div class="panel-dark p-4 p-md-5 text-start h-100">
+            <h2 class="fs-5 fw-semibold text-adso-red mb-4">Resumen del pedido</h2>
+            <div class="d-flex justify-content-between text-gray-300 mb-3">
+              <span>Producto</span>
+              <p id="planResumen" class="text-gray-400 mb-0"></p>
+            </div>
+            <hr class="border-gray-700 my-4">
+            <div class="d-flex justify-content-between fw-bold fs-5">
+              <span>Total</span>
+              <span id="totalPrecio" class="text-adso-red"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </section>
+
+  <!-- MODAL ÉXITO -->
+  <div id="modalExito">
+    <div class="modal-exito-box bg-black text-white p-4 rounded-3 text-center">
+      <h2 class="fs-5 fw-bold mb-2">✅ Pago exitoso</h2>
+      <p class="mb-4">Gracias por tu compra</p>
+      <a href="../UI/forms/login.html" class="btn btn-adso w-100 py-2 fw-semibold">Continuar</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="../../js/pagos.js"></script>
 </body>
 
 </html>

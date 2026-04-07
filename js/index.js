@@ -12,10 +12,12 @@ async function cargarPeliculas() {
   contenedor.innerHTML = "";
 
   data.results.slice(0, 10).forEach(pelicula => {
+    if (!pelicula.poster_path) return;
     contenedor.innerHTML += `
-      <div class="group relative cursor-pointer">
+      <div class="movie-thumb">
         <img src="${IMG_SMALL + pelicula.poster_path}"
-          class="rounded-lg group-hover:scale-105 transition duration-300">
+          alt="${pelicula.title}"
+          class="w-100 rounded shadow-sm">
       </div>
     `;
   });
@@ -32,10 +34,12 @@ async function cargarSeries() {
   contenedor.innerHTML = "";
 
   data.results.slice(0, 10).forEach(serie => {
+    if (!serie.poster_path) return;
     contenedor.innerHTML += `
-      <div class="group relative cursor-pointer">
+      <div class="movie-thumb">
         <img src="${IMG_SMALL + serie.poster_path}"
-          class="rounded-lg group-hover:scale-105 transition duration-300">
+          alt="${serie.name}"
+          class="w-100 rounded shadow-sm">
       </div>
     `;
   });
